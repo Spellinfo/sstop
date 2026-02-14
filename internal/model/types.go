@@ -104,8 +104,9 @@ type Connection struct {
 	DstIP    net.IP
 	DstPort  uint16
 	State    SocketState
-	UpRate   float64 // bytes/sec
-	DownRate float64 // bytes/sec
+	UpRate   float64       // bytes/sec
+	DownRate float64       // bytes/sec
+	Age      time.Duration // how long the connection has been tracked
 
 	// Resolved remote hostname (empty if not resolved yet)
 	RemoteHost string
@@ -129,20 +130,53 @@ type ProcessSummary struct {
 	ListenPorts []ListenPort
 	ConnCount   int
 	ListenCount int
+
+	// Sparkline history (total rate = up+down, chronological, oldest first)
+	RateHistory []float64
 }
 
-// InterfaceStats holds per-interface byte counters.
+// InterfaceStats holds per-interface byte counters and rates.
 type InterfaceStats struct {
 	Name      string
 	BytesRecv uint64
 	BytesSent uint64
+	RecvRate  float64 // bytes/sec (computed by collector)
+	SendRate  float64 // bytes/sec (computed by collector)
+}
+
+// RemoteHostSummary aggregates bandwidth by remote host across all processes.
+type RemoteHostSummary struct {
+	Host      string   // hostname or IP string
+	IP        net.IP   // raw IP
+	UpRate    float64  // bytes/sec
+	DownRate  float64  // bytes/sec
+	ConnCount int      // number of connections
+	Processes []string // process names connected to this host
+}
+
+// ListenPortEntry is a system-wide listening port with its owning process.
+type ListenPortEntry struct {
+	Proto   Protocol
+	IP      net.IP
+	Port    uint16
+	PID     uint32
+	Process string
+	Cmdline string
 }
 
 // Snapshot is an immutable point-in-time view of all network activity.
 type Snapshot struct {
-	Timestamp   time.Time
-	Processes   []ProcessSummary
-	Interfaces  []InterfaceStats
-	TotalUp     float64 // bytes/sec
-	TotalDown   float64 // bytes/sec
+	Timestamp    time.Time
+	Processes    []ProcessSummary
+	Interfaces   []InterfaceStats
+	RemoteHosts  []RemoteHostSummary
+	ListenPorts  []ListenPortEntry
+	TotalUp      float64 // bytes/sec
+	TotalDown    float64 // bytes/sec
+
+	// Total rate history for header sparkline (up+down combined)
+	TotalRateHistory []float64
+
+	// Active interface name (empty = all)
+	ActiveIface string
 }

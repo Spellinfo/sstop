@@ -1,0 +1,3 @@
+sstop
+*.log
+/dist/
